@@ -5,7 +5,8 @@
     <title>Redirecting...</title>
     <script type="text/javascript">
       // Save the path before redirect
-      var segment = 1;
+      // For a user site served at the repository root use segment = 0
+      var segment = 0;
       var l = window.location;
       l.replace(
         l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
