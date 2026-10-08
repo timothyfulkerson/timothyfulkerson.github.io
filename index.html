@@ -92,8 +92,9 @@ Error generating stack: `+l.message+`
 
     <div id="root"></div>
     <script>
-      window.addEventListener("pushState", () => window.scrollTo(0, 0));
-      window.addEventListener("popstate", () => window.scrollTo(0, 0));
+      const scrollToTop = () => window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      window.addEventListener("pushState", scrollToTop);
+      window.addEventListener("popstate", scrollToTop);
     </script>
     <script
       defer
