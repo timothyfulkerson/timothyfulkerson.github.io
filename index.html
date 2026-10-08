@@ -95,6 +95,22 @@ Error generating stack: `+l.message+`
       const scrollToTop = () => window.scrollTo({ top: 0, left: 0, behavior: "instant" });
       window.addEventListener("pushState", scrollToTop);
       window.addEventListener("popstate", scrollToTop);
+      const insertResumePreview = () => {
+        const button = document.querySelector('button[data-loc="client/src/pages/About.tsx:273"]');
+        const card = button?.closest('[data-loc="client/src/pages/About.tsx:268"]');
+        if (!button || !card || card.querySelector(".resume-preview")) return;
+        card.querySelector('[data-loc="client/src/pages/About.tsx:270"]')?.remove();
+        const image = document.createElement("img");
+        image.className = "resume-preview";
+        image.src = "/assets/Tim_Fulkerson_Resume_Preview.jpg";
+        image.alt = "Full-page preview of Tim Fulkerson's resume";
+        image.loading = "lazy";
+        image.style.cssText = "display:block;width:100%;max-width:520px;height:auto;margin:0 auto 1rem;border:1px solid rgba(0,0,0,.18);border-radius:4px;";
+        button.before(image);
+      };
+      const resumeObserver = new MutationObserver(insertResumePreview);
+      resumeObserver.observe(document.getElementById("root"), { childList: true, subtree: true });
+      insertResumePreview();
       document.addEventListener("click", (event) => {
         const button = event.target instanceof Element
           ? event.target.closest('button[data-loc="client/src/pages/About.tsx:273"]')
