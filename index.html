@@ -91,6 +91,10 @@ Error generating stack: `+l.message+`
 </script>
 
     <div id="root"></div>
+    <script>
+      window.addEventListener("pushState", () => window.scrollTo(0, 0));
+      window.addEventListener("popstate", () => window.scrollTo(0, 0));
+    </script>
     <script
       defer
       src="%VITE_ANALYTICS_ENDPOINT%/umami"
