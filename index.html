@@ -95,6 +95,18 @@ Error generating stack: `+l.message+`
       const scrollToTop = () => window.scrollTo({ top: 0, left: 0, behavior: "instant" });
       window.addEventListener("pushState", scrollToTop);
       window.addEventListener("popstate", scrollToTop);
+      document.addEventListener("click", (event) => {
+        const button = event.target instanceof Element
+          ? event.target.closest('button[data-loc="client/src/pages/About.tsx:273"]')
+          : null;
+        if (!button) return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        const link = document.createElement("a");
+        link.href = "/assets/tim-fulkerson-resume.pdf";
+        link.download = "Tim-Fulkerson-Resume.pdf";
+        link.click();
+      }, true);
     </script>
     <script
       defer
